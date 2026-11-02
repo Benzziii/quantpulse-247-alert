@@ -1,0 +1,21 @@
+name: QuantPulse 24/7 Crypto Alert
+on:
+  schedule:
+    - cron: '*/30 * * * *' # Jalan otomatis tiap 30 menit (24/7 gratis)
+  workflow_dispatch:       # Bisa dipicu manual kapan saja
+
+jobs:
+  scan-and-alert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run QuantPulse Top 500 Scanner
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python3 scanner.py
