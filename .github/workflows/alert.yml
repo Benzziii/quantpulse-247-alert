@@ -1,7 +1,7 @@
 name: QuantPulse 24/7 Crypto Alert
 on:
   schedule:
-    - cron: '*/30 * * * *' # Jalan otomatis tiap 30 menit (24/7 gratis)
+    - cron: '*/15 * * * *' # Trigger tiap 15-30 menit (kompensasi antrean GitHub)
   workflow_dispatch:       # Bisa dipicu manual kapan saja
 
 jobs:
